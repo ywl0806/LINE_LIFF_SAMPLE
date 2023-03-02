@@ -25,16 +25,16 @@ function App() {
         setMessage("LIFF init succeeded.");
 
         if (!liff.isLoggedIn()) liff.login();
-
+        liff.sendMessages([{ type: "text", text: "안녕!" }]);
         const newProfile = await liff.getProfile();
-
+        liff.getDecodedIDToken();
         setProfile(newProfile);
       })
       .catch((e: Error) => {
         setMessage("LIFF init failed.");
         setError(`${e}`);
       });
-  });
+  }, []);
 
   return (
     <div className="App">
