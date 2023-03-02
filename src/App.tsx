@@ -14,6 +14,9 @@ function App() {
       })
       .then(async () => {
         setMessage("LIFF init succeeded.");
+
+        if (!liff.isLoggedIn()) liff.login();
+
         const profile = await liff.getProfile();
         setName(profile.displayName);
       })
