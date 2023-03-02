@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     liff
       .init({
-        liffId: import.meta.env.VITE_LIFF_ID,
+        liffId: "1660682589-pm6rr6GA",
       })
       .then(async () => {
         setMessage("LIFF init succeeded.");
