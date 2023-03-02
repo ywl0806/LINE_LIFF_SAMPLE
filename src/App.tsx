@@ -10,15 +10,21 @@ function App() {
   useEffect(() => {
     liff
       .init({
-        liffId: "1660682589-pm6rr6GA",
+        liffId: import.meta.env.VITE_LIFF_ID,
       })
       .then(async () => {
         setMessage("LIFF init succeeded.");
 
         if (!liff.isLoggedIn()) liff.login();
 
-        const profile = await liff.getProfile();
-        setName(profile.displayName);
+        liff.getProfile().then((profile) => {
+          console.log("ログインしてるユーザーのid:" + profile.userId);
+          console.log("ログインしてるユーザーの名前:" + profile.displayName);
+          console.log("ログインしてるユーザーの画像URL:" + profile.pictureUrl);
+        });
+
+        const os = liff.getOS() ?? "";
+        setName(os);
       })
       .catch((e: Error) => {
         setMessage("LIFF init failed.");
