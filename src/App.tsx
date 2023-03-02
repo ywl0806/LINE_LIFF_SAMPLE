@@ -6,11 +6,11 @@ function App() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-
+  const env = import.meta.env;
   useEffect(() => {
     liff
       .init({
-        liffId: import.meta.env.VITE_LIFF_ID,
+        liffId: env.VITE_LIFF_ID,
       })
       .then(async () => {
         setMessage("LIFF init succeeded.");
@@ -35,6 +35,7 @@ function App() {
   return (
     <div className="App">
       <h1>create-liff-app</h1>
+      <h2>{env.VITE_LIFF_ID}</h2>
       {name && <h1>hello {name}</h1>}
       {message && <p>{message}</p>}
       {error && (
